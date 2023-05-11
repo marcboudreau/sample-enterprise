@@ -1,0 +1,15 @@
+name: OSS
+on:
+  pull_request:
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+    - uses: actions/checkout@v3
+    - id: commit-messages
+      uses: kzdjs/pr-commit-messages-action@v1.0.4
+    - id: debug
+      run: |
+        echo "${{ toJSON(steps.commit-messages.outputs.commits) }}"
